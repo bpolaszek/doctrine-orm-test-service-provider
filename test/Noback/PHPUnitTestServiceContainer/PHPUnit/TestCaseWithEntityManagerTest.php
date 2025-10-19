@@ -11,15 +11,12 @@ final class TestCaseWithEntityManagerTest extends TestCase
 {
     use TestCaseWithEntityManager;
 
-    protected function getEntityDirectories()
+    protected function getEntityDirectories(): array
     {
         return array(__DIR__ . '/Entity');
     }
 
-    /**
-     * @test
-     */
-    public function it_persists_an_entity()
+    public function test_it_persists_an_entity()
     {
         $user = new User();
         $user->setName('Matthias');
@@ -33,10 +30,7 @@ final class TestCaseWithEntityManagerTest extends TestCase
         $this->assertSame($retrievedUser->getName(), $user->getName());
     }
 
-    /**
-     * @test
-     */
-    public function a_new_test_has_a_fresh_database()
+    public function test_a_new_test_has_a_fresh_database()
     {
         $count = $this
             ->getEntityManager()
@@ -46,21 +40,15 @@ final class TestCaseWithEntityManagerTest extends TestCase
             ->getQuery()
             ->getSingleScalarResult();
 
-        $this->assertSame(0, (integer)$count);
+        $this->assertSame(0, (int) $count);
     }
 
-    /**
-     * @test
-     */
-    public function the_dbal_connection_can_be_retrieved()
+    public function test_the_dbal_connection_can_be_retrieved()
     {
         $this->assertInstanceOf(Connection::class, $this->getConnection());
     }
 
-    /**
-     * @test
-     */
-    public function the_event_manager_can_be_retrieved()
+    public function test_the_event_manager_can_be_retrieved()
     {
         $this->assertInstanceOf(EventManager::class, $this->getEventManager());
     }

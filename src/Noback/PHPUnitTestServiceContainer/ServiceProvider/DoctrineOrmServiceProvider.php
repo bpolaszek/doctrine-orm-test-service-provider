@@ -2,12 +2,12 @@
 
 namespace Noback\PHPUnitTestServiceContainer\ServiceProvider;
 
-use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\SchemaTool;
-use Doctrine\ORM\Tools\Setup;
+use Doctrine\ORM\ORMSetup;
 use Noback\PHPUnitTestServiceContainer\ServiceContainer;
 use Noback\PHPUnitTestServiceContainer\ServiceProvider;
+use Noback\PHPUnitTestServiceContainer\Cache\ArrayCachePool;
 use Pimple\Container;
 
 class DoctrineOrmServiceProvider implements ServiceProvider
@@ -34,11 +34,14 @@ class DoctrineOrmServiceProvider implements ServiceProvider
         };
 
         $serviceContainer['doctrine_orm.configuration'] = function (ServiceContainer $serviceContainer) {
-            return Setup::createAnnotationMetadataConfiguration(
+            $config = ORMSetup::createAttributeMetadataConfiguration(
                 $serviceContainer['doctrine_orm.entity_directories'],
                 $serviceContainer['doctrine_orm.development_mode'],
-                $serviceContainer['doctrine_orm.proxy_dir']
+                $serviceContainer['doctrine_orm.proxy_dir'],
+                new ArrayCachePool()
             );
+
+            return $config;
         };
 
         $serviceContainer['doctrine_orm.schema_tool'] = function (ServiceContainer $serviceContainer) {
