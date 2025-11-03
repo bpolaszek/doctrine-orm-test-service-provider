@@ -2,26 +2,28 @@
 
 namespace Noback\PHPUnitTestServiceContainer\PHPUnit\Entity;
 
-use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\Entity;
-use Doctrine\ORM\Mapping\GeneratedValue;
-use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @Entity
+ * @ORM\Entity
  */
+#[ORM\Entity]
 class User
 {
     /**
-     * @Id
-     * @Column(type="integer")
-     * @GeneratedValue(strategy="AUTO")
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
+    #[ORM\Id]
+    #[ORM\Column(type: "integer")]
+    #[ORM\GeneratedValue(strategy: "AUTO")]
     private $id;
 
     /**
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      */
+    #[ORM\Column(type: "string")]
     private $name;
 
     public function getId()

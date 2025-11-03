@@ -1,6 +1,6 @@
 # Doctrine ORM service provider for unit tests
 
-[![Build Status](https://travis-ci.org/matthiasnoback/doctrine-orm-test-service-provider.png?branch=1.0)](https://travis-ci.org/matthiasnoback/doctrine-orm-test-service-provider)
+[![CI](https://github.com/matthiasnoback/doctrine-orm-test-service-provider/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/matthiasnoback/doctrine-orm-test-service-provider/actions/workflows/ci.yml)
 
 This library contains a service provider to be used with a [service container for PHPUnit
 tests](https://github.com/matthiasnoback/phpunit-test-service-container).
